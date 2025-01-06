@@ -28,9 +28,7 @@ class SkopeLinkSdk {
         }
         const event = {
             eventName,
-            eventData,
-            userId: this.config.userId,
-            timestamp: new Date().toISOString(),
+            properties: Object.assign({ userId: this.config.userId }, eventData),
         };
         this.eventQueue.push(event);
         if (this.config.batchSize &&
@@ -47,13 +45,13 @@ class SkopeLinkSdk {
             const eventsToSend = [...this.eventQueue];
             this.eventQueue = [];
             try {
-                const response = yield fetch(this.config.endpoint, {
+                const response = yield fetch(this.config.endpoint + '/analytics/track', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${this.config.apiKey}`,
                     },
-                    body: JSON.stringify({ events: eventsToSend }),
+                    body: JSON.stringify(eventsToSend),
                 });
                 if (!response.ok) {
                     throw new Error(`Failed to send events: ${response.statusText}`);
