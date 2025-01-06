@@ -65,7 +65,7 @@ export class SkopeLinkSdk {
           'Content-Type': 'application/json',
           'api-key': this.config.apiKey,
         },
-        body: JSON.stringify({ events: eventsToSend }),
+        body: JSON.stringify(eventsToSend),
       });
 
       if (!response.ok) {
