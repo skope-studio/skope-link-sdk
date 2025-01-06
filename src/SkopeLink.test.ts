@@ -1,13 +1,13 @@
-import { EventTrackerSDK } from './EventTracker';
+import { SkopeLinkSdk } from './SkopeLink';
 import fetchMock from 'jest-fetch-mock';
 
 fetchMock.enableMocks();
 
 describe('EventTrackerSDK', () => {
-  let tracker: EventTrackerSDK;
+  let tracker: SkopeLinkSdk;
 
   beforeEach(() => {
-    tracker = new EventTrackerSDK();
+    tracker = new SkopeLinkSdk();
     fetchMock.resetMocks();
   });
 
@@ -59,7 +59,7 @@ describe('EventTrackerSDK', () => {
 
     test('should warn if track is called before init', () => {
       console.warn = jest.fn();
-      const uninitializedTracker = new EventTrackerSDK();
+      const uninitializedTracker = new SkopeLinkSdk();
       uninitializedTracker.track('test_event', { key: 'value' });
 
       expect(console.warn).toHaveBeenCalledWith(

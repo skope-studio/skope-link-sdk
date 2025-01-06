@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventTrackerSDK = void 0;
-class EventTrackerSDK {
+exports.SkopeLinkSdk = void 0;
+class SkopeLinkSdk {
     constructor() {
         this.eventQueue = [];
         this.isFlushing = false;
@@ -69,4 +69,4 @@ class EventTrackerSDK {
         });
     }
 }
-exports.EventTrackerSDK = EventTrackerSDK;
+exports.SkopeLinkSdk = SkopeLinkSdk;

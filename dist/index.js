@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventTracker = void 0;
-const EventTracker_1 = require("./EventTracker");
-exports.EventTracker = new EventTracker_1.EventTrackerSDK();
-exports.default = exports.EventTracker;
+exports.SkopeLink = void 0;
+const SkopeLink_1 = require("./SkopeLink");
+exports.SkopeLink = new SkopeLink_1.SkopeLinkSdk();
+exports.default = exports.SkopeLink;

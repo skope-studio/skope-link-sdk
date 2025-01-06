@@ -5,7 +5,7 @@ type SDKConfig = {
     batchSize?: number;
     retryAttempts?: number;
 };
-export declare class EventTrackerSDK {
+export declare class SkopeLinkSdk {
     private config;
     private eventQueue;
     private isFlushing;

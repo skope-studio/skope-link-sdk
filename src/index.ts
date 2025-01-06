@@ -1,5 +1,5 @@
-import { EventTrackerSDK } from './EventTracker';
+import { SkopeLinkSdk } from './SkopeLink';
 
-export const EventTracker = new EventTrackerSDK();
+export const SkopeLink = new SkopeLinkSdk();
 
-export default EventTracker;
+export default SkopeLink;

@@ -6,7 +6,7 @@ type SDKConfig = {
   retryAttempts?: number;
 };
 
-export class EventTrackerSDK {
+export class SkopeLinkSdk {
   private config!: SDKConfig;
   private eventQueue: any[] = [];
   private isFlushing = false;
