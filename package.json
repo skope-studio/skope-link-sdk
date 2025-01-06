@@ -1,0 +1,39 @@
+{
+  "name": "skope-link-sdk",
+  "version": "1.0.0",
+  "description": "Skope Link SDK - A simple tool to track and register events via API calls.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skope-studio/skope-link-sdk.git"
+  },
+  "keywords": [
+    "sdk",
+    "tracking",
+    "events",
+    "api",
+    "skope",
+    "link"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skope-studio/skope-link-sdk/issues"
+  },
+  "homepage": "https://github.com/skope-studio/skope-link-sdk#readme",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
