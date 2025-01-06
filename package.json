@@ -1,6 +1,6 @@
 {
   "name": "skope-link-sdk",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Skope Link SDK - A simple tool to track and register events via API calls.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
