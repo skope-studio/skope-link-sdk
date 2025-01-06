@@ -29,11 +29,13 @@ export class SkopeLinkSdk {
     }
 
     const event = {
-      eventName,
-      properties: {
-        userId: this.config.userId,
+      event_name: eventName,
+      event_properties: {
         ...eventData,
+        userId: this.config.userId,
       },
+      session_id: this.generateSessionId(),
+      source: 'sdk', // Puedes ajustar según sea necesario
     };
 
     this.eventQueue.push(event);
@@ -57,13 +59,13 @@ export class SkopeLinkSdk {
     this.eventQueue = [];
 
     try {
-      const response = await fetch(this.config.endpoint + '/analytics/track', {
+      const response = await fetch(`${this.config.endpoint}/analytics/track`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.config.apiKey}`,
+          'api-key': this.config.apiKey,
         },
-        body: JSON.stringify(eventsToSend),
+        body: JSON.stringify({ events: eventsToSend }),
       });
 
       if (!response.ok) {
@@ -75,5 +77,10 @@ export class SkopeLinkSdk {
     } finally {
       this.isFlushing = false;
     }
+  }
+
+  private generateSessionId(): string {
+    // Generar un ID de sesión simple (puedes ajustar según sea necesario)
+    return Math.random().toString(36).substr(2, 9);
   }
 }
