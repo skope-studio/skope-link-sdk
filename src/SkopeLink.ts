@@ -30,9 +30,10 @@ export class SkopeLinkSdk {
 
     const event = {
       eventName,
-      eventData,
-      userId: this.config.userId,
-      timestamp: new Date().toISOString(),
+      properties: {
+        userId: this.config.userId,
+        ...eventData,
+      },
     };
 
     this.eventQueue.push(event);
@@ -56,13 +57,13 @@ export class SkopeLinkSdk {
     this.eventQueue = [];
 
     try {
-      const response = await fetch(this.config.endpoint, {
+      const response = await fetch(this.config.endpoint + '/analytics/track', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${this.config.apiKey}`,
         },
-        body: JSON.stringify({ events: eventsToSend }),
+        body: JSON.stringify(eventsToSend),
       });
 
       if (!response.ok) {
