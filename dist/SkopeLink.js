@@ -27,8 +27,10 @@ class SkopeLinkSdk {
             return;
         }
         const event = {
-            eventName,
-            properties: Object.assign({ userId: this.config.userId }, eventData),
+            event_name: eventName,
+            event_properties: Object.assign(Object.assign({}, eventData), { userId: this.config.userId }),
+            session_id: this.generateSessionId(),
+            source: 'sdk', // Puedes ajustar según sea necesario
         };
         this.eventQueue.push(event);
         if (this.config.batchSize &&
@@ -45,13 +47,13 @@ class SkopeLinkSdk {
             const eventsToSend = [...this.eventQueue];
             this.eventQueue = [];
             try {
-                const response = yield fetch(this.config.endpoint + '/analytics/track', {
+                const response = yield fetch(`${this.config.endpoint}/analytics/track`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: `Bearer ${this.config.apiKey}`,
+                        'api-key': this.config.apiKey,
                     },
-                    body: JSON.stringify(eventsToSend),
+                    body: JSON.stringify({ events: eventsToSend }),
                 });
                 if (!response.ok) {
                     throw new Error(`Failed to send events: ${response.statusText}`);
@@ -65,6 +67,10 @@ class SkopeLinkSdk {
                 this.isFlushing = false;
             }
         });
+    }
+    generateSessionId() {
+        // Generar un ID de sesión simple (puedes ajustar según sea necesario)
+        return Math.random().toString(36).substr(2, 9);
     }
 }
 exports.SkopeLinkSdk = SkopeLinkSdk;

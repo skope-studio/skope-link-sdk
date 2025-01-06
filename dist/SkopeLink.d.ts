@@ -12,5 +12,6 @@ export declare class SkopeLinkSdk {
     init(config: SDKConfig): void;
     track(eventName: string, eventData: Record<string, any>): void;
     flush(): Promise<void>;
+    private generateSessionId;
 }
 export {};
